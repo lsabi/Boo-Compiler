@@ -1,0 +1,33 @@
+/*
+ * Error handling file for the Boo-Compiler.
+ * Shows the behaviour of the compiler when wrong input files are given.
+ * Suggestion: comment with "//" the lines of code where the compiler raises an exception, in order to continue the execution
+ */
+
+// Usage of an undeclared variable
+print a.
+a or false.
+int b = a or 1.
+
+// Usage of variables without a value
+bool c.
+print c.
+int d.
+print d.
+integer e.
+print e.
+
+// Operation between expressions of different types
+print 1 or false.
+print true and 1.
+print 1 equals false.
+
+// Casting of values already of the particular type
+// NOTE: In this case only a notice will be printed on the terminal
+print int(1).
+print bool(true).
+print int(1) or int(false).
+
+// Assigning expression whose type does not match the one declared
+int a = true.
+bool b = 1.

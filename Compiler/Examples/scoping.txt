@@ -1,0 +1,146 @@
+/*
+ * Ambigouos scoping file for the Boo-Compiler.
+ * Shows the ambiguity that the compiler is able to handle.
+ * Suggestion: comment the lines that rise an error in order to go on with the execution the next time the program is run
+ */
+
+
+// Declares variable ab of type bool with value false within scope number 1.
+bool ab=false.
+// print the value of the variable ab (false), declared within scope number 1.
+print ab.
+// Enters a new scope (scope number 2 now)
+{
+	// Declares a new variable ab of type int with value 1 within scope number 2. It is possible to declare a variable that has been already declared within another scope, of a different type, but the variable that will be used is the latest declared (the following one)
+	int ab=1.
+	// print the value of the variable ab (1), declared within scope number 2.
+	print ab.
+// Exits scope number 2, destroying all the declared variables within (variable ab of type int will be destroyed)
+}
+// print the value of the variable ab (false), declared within scope number 2.
+print ab.
+// Rises an error since ab has been already declared within scope number 1.
+// int ab.
+
+// OTHER EXAMPLES
+// Scoping with different names
+bool ac.
+ac=false.
+// print false
+print ac.
+{
+	integer ac=100.
+	bool ad=bool(ac>20).
+	// print true
+	print ad.
+	{
+		int ac=1,ad=0.
+		// Shows 1
+		show ac.
+		// print 0
+		print ad.
+		{
+			bool ad=true.
+			int ac=0.
+			// Shows true
+			show ad.
+			// print 0
+			print ac.
+		}
+		// Shows 1
+		show ac.
+		// print 0
+		print ad.
+		{
+			integer ac=15.
+			bool ad=true, ag=bool(ac<10).
+			// Shows true
+			show ad.
+			// print false
+			print ag.
+		}
+	}
+	// print true
+	print ad.
+}
+// print false.
+print ac.
+
+
+// Scoping with different names
+int ba=1, bb=0.
+// Shows 1
+show ba.
+// print 0
+print bb.
+{
+	int ba=0.
+	bb=1.
+	// Shows 0
+	show ba.
+	// print 1
+	print bb.
+	{
+		bool ba=true,bb=false.
+		// Shows true
+		show ba.
+		// print false
+		print bb.
+	}
+	// Shows 0
+	show ba.
+	// print 1
+	print bb.
+	{
+		int ba=0.
+		bool bb=true.
+		// Shows 0
+		show ba.
+		// print true
+		print bb.
+	}
+	// Shows 0
+	show ba.
+	// print 1
+	print bb.
+}
+// Shows 1
+show ba.
+// print 1
+print bb.
+
+
+// Scoping with only the same name for all variables
+int cc.
+cc=0.
+print cc.
+{
+	print cc.
+	cc=1.
+	print cc.
+	bool cc=false.
+	print cc.
+	{
+		print cc.
+		int cc=1.
+		print cc.
+	}
+	print cc.
+	cc=true.
+	print cc.
+	cc=false.
+	print cc.
+	{
+		print cc.
+		int cc=1.
+		print cc.
+		cc=0.
+		print cc.
+	}
+	print cc.
+	cc=true.
+	print cc.
+}
+print cc.
+cc=0.
+print cc.

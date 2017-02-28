@@ -1,0 +1,166 @@
+// Skip the execution of the print statements since the condition is false
+if true
+{
+	print true.
+	print "TRUE\n".
+}
+print "ciao".
+print true.
+print "ciaociao".
+print 1.
+print 1.
+print 2.
+if false
+{
+	print true.
+	print false.
+	print true.
+	print "if condition is true\n".
+	print "Ciao pippo\n".
+}
+else
+{
+	print "if is not true\n".
+}
+print true.
+print true.
+print "ciao\n".
+print "come stai\n".
+bool prova.
+int ciao=1.
+print 1.
+print "?\n".
+print 1.
+if ciao
+{	
+	print true.
+	print true.
+	prova=true.
+}
+else
+{
+	print false.
+	print false.
+	show false.
+}
+print prova.
+print 1.
+bool a.
+a=true.
+int l.
+integer m.
+bool d, e, f.
+integer n, o=50,p.
+int g, h, i.
+a=true.
+print a.
+a=true.
+print a.
+a=false.
+print a.
+int b=1.
+a=bool(b).
+print a.
+{
+	print a.
+	{
+		bool a=true. 
+		bool t.
+		print a.
+		{
+			print a.
+		}
+		print a. 
+	}
+	print a. 
+}
+print "A's value ".
+print a.
+integer asagd=10+-10+10.
+print 10--2 == 12.
+print 10-42!=10.
+int c = 10-42 == 10.
+print c.
+
+int sdagadg = 10/1>1. 
+
+print a. 
+print a.
+print a.
+show bool(a). 
+print a.
+print bool (10 > 2). 
+print "A's value is ". 
+print a.
+{ print a. { print a. { print a. print 10<200.} } }
+
+print true. print true. print true. print true.print true. print true.print true. print true.print true. print true.print true. print true.print true. print true.print true. print true.
+show true. show true. show true. show true.
+integer z.
+integer x, y.
+
+x=10.
+print x>9.
+x=200.
+y=20.
+print bool (x != y).
+print x < 10*20.
+print x != 10*20.
+print 10*20 == x . 
+print x == 10*20.
+
+int aa=1.
+print aa.
+{
+	int cc=1.
+{		
+		int dd=1.
+		{print cc. bool ee=true. print ee.}
+	//	exit.
+}
+	print aa.
+}
+int ff.
+print aa.
+ff=1.
+print ff.
+print aa.
+// exit.
+
+
+// Super mega ambiguous scoping
+// bool a.
+a=false.
+print a.
+a=true.
+print a.
+{
+	int a=1,b=1.
+	print a.
+	{
+		int a=1,b=0.
+		print a.
+		{
+			int a=0.
+			bool b=false.
+			int c=51/20==2.
+			print a.
+			print b.
+			print c.
+		}
+		print a. print b.
+	}
+	print a.
+}
+
+// Questa è una prova e funziona
+/*
+	// bool a.
+	print a.
+*/
+/*
+print a.
+// Prova prova prova
+print 10--10 == 20+1*0.
+exit.
+*/

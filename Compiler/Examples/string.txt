@@ -1,0 +1,40 @@
+/*
+ * String file for the Boo-Compiler.
+ * Shows which kind of strings the compiler is able to handle.
+ */
+
+// Every print of a string is of the form "print string ." where string is a text message between quotes("")
+// The following line will print the string "ciao" on the screen
+print "ciao".
+print "\n".
+
+// The compiler can handle strings with spaces between words
+print "This is my awesome compiler".
+print "\n".
+
+// The compiler can handle strings with digits and other characters
+print "I <3 Boo-Compiler".
+print "\n".
+print "I make a lot of $ (or £ for british people);".
+print "\n".
+
+// The compiler can print strings spread over multiple consecutive lines, but new lines and tabs will be ignored. For example, in the following case, the string will be printed as one sentence
+print "This is 
+	a sentence".
+print "\n".
+
+// The compiler is also able to handle multi line strings, wich are concatenated with "+". They do not have to have anything between the " and the + apart from empty spaces, tabs and new lines
+print "I"+   
+  " can"	+	
+   " print" +	" different strings"+" also"
++" on"	+
+" multilple " + "lines".
+print "\n".
+
+// The compiler recognizes escape sequences and uses them to build the string
+print "Boo\nCompiler".
+print "\n".
+print "\"Boo-Compiler\"".
+print "\n".
+print "In Boo-Compiler \ttabs do \talso\t exist\n".
+print "If you did not notice it yet,\nnew lines use the \ n escape sequence\n".

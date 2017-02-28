@@ -1,0 +1,2149 @@
+Grammar
+
+    0 $accept: start $end
+
+    1 start: scope start
+    2      | %empty
+
+    3 $@1: %empty
+
+    4 scope: '{' $@1 start '}'
+    5      | expr '.'
+    6      | declaration '.'
+    7      | statement
+    8      | assignment '.'
+    9      | PRINT expr '.'
+   10      | SHOW expr '.'
+   11      | EXIT '.'
+   12      | PRINT STRING '.'
+
+   13 $@2: %empty
+
+   14 declaration: INT ID $@2 decl
+
+   15 $@3: %empty
+
+   16 declaration: BOOL ID $@3 decl
+
+   17 $@4: %empty
+
+   18 declaration: INTEGER ID $@4 decl
+
+   19 $@5: %empty
+
+   20 declaration: INT ID '=' expr $@5 decl
+
+   21 $@6: %empty
+
+   22 declaration: BOOL ID '=' expr $@6 decl
+
+   23 $@7: %empty
+
+   24 declaration: INTEGER ID '=' expr $@7 decl
+
+   25 decl: decl ',' ID
+   26     | decl ',' ID '=' expr
+   27     | %empty
+
+   28 assignment: ID '=' expr
+
+   29 $@8: %empty
+
+   30 $@9: %empty
+
+   31 $@10: %empty
+
+   32 statement: IF expr $@8 '{' $@9 if_scope '}' $@10 else_statement
+
+   33 else_statement: %empty
+
+   34 $@11: %empty
+
+   35 else_statement: ELSE '{' $@11 if_scope '}'
+
+   36 if_scope: assignment '.' if_scope
+
+   37 $@12: %empty
+
+   38 if_scope: PRINT expr '.' $@12 if_scope
+
+   39 $@13: %empty
+
+   40 if_scope: SHOW expr '.' $@13 if_scope
+
+   41 $@14: %empty
+
+   42 if_scope: EXIT '.' $@14 if_scope
+
+   43 $@15: %empty
+
+   44 if_scope: PRINT STRING '.' $@15 if_scope
+   45         | %empty
+
+   46 expr: TRUE
+   47     | FALSE
+   48     | NUMBERS
+   49     | ID
+   50     | expr OR expr
+   51     | expr AND expr
+   52     | NOT '(' expr ')'
+   53     | INT '(' expr ')'
+   54     | BOOL '(' expr ')'
+   55     | '(' expr ')'
+   56     | expr '<' expr
+   57     | expr '>' expr
+   58     | expr EQ expr
+   59     | expr NEQ expr
+   60     | expr '+' expr
+   61     | expr '-' expr
+   62     | expr '*' expr
+   63     | expr '/' expr
+   64     | '-' expr
+   65     | '|' expr '|'
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 52 53 54 55
+')' (41) 52 53 54 55
+'*' (42) 62
+'+' (43) 60
+',' (44) 25 26
+'-' (45) 61 64
+'.' (46) 5 6 8 9 10 11 12 36 38 40 42 44
+'/' (47) 63
+'<' (60) 56
+'=' (61) 20 22 24 26 28
+'>' (62) 57
+'{' (123) 4 32 35
+'|' (124) 65
+'}' (125) 4 32 35
+error (256)
+ID (258) 14 16 18 20 22 24 25 26 28 49
+STRING (259) 12 44
+NUMBERS (260) 48
+IF (261) 32
+ELSE (262) 35
+PRINT (263) 9 12 38 44
+SHOW (264) 10 40
+AND (265) 51
+OR (266) 50
+NOT (267) 52
+EQ (268) 58
+NEQ (269) 59
+EXIT (270) 11 42
+BOOL (271) 16 22 54
+TRUE (272) 46
+FALSE (273) 47
+INT (274) 14 20 53
+INTEGER (275) 18 24
+CASTING (276)
+UMINUS (277)
+
+
+Nonterminals, with rules where they appear
+
+$accept (37)
+    on left: 0
+start (38)
+    on left: 1 2, on right: 0 1 4
+scope (39)
+    on left: 4 5 6 7 8 9 10 11 12, on right: 1
+$@1 (40)
+    on left: 3, on right: 4
+declaration (41)
+    on left: 14 16 18 20 22 24, on right: 6
+$@2 (42)
+    on left: 13, on right: 14
+$@3 (43)
+    on left: 15, on right: 16
+$@4 (44)
+    on left: 17, on right: 18
+$@5 (45)
+    on left: 19, on right: 20
+$@6 (46)
+    on left: 21, on right: 22
+$@7 (47)
+    on left: 23, on right: 24
+decl (48)
+    on left: 25 26 27, on right: 14 16 18 20 22 24 25 26
+assignment (49)
+    on left: 28, on right: 8 36
+statement (50)
+    on left: 32, on right: 7
+$@8 (51)
+    on left: 29, on right: 32
+$@9 (52)
+    on left: 30, on right: 32
+$@10 (53)
+    on left: 31, on right: 32
+else_statement (54)
+    on left: 33 35, on right: 32
+$@11 (55)
+    on left: 34, on right: 35
+if_scope (56)
+    on left: 36 38 40 42 44 45, on right: 32 35 36 38 40 42 44
+$@12 (57)
+    on left: 37, on right: 38
+$@13 (58)
+    on left: 39, on right: 40
+$@14 (59)
+    on left: 41, on right: 42
+$@15 (60)
+    on left: 43, on right: 44
+expr (61)
+    on left: 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63
+    64 65, on right: 5 9 10 20 22 24 26 28 32 38 40 50 51 52 53 54
+    55 56 57 58 59 60 61 62 63 64 65
+
+
+State 0
+
+    0 $accept: . start $end
+
+    ID       shift, and go to state 1
+    NUMBERS  shift, and go to state 2
+    IF       shift, and go to state 3
+    PRINT    shift, and go to state 4
+    SHOW     shift, and go to state 5
+    NOT      shift, and go to state 6
+    EXIT     shift, and go to state 7
+    BOOL     shift, and go to state 8
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 11
+    INTEGER  shift, and go to state 12
+    '('      shift, and go to state 13
+    '{'      shift, and go to state 14
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    $default  reduce using rule 2 (start)
+
+    start        go to state 17
+    scope        go to state 18
+    declaration  go to state 19
+    assignment   go to state 20
+    statement    go to state 21
+    expr         go to state 22
+
+
+State 1
+
+   28 assignment: ID . '=' expr
+   49 expr: ID .
+
+    '='  shift, and go to state 23
+
+    $default  reduce using rule 49 (expr)
+
+
+State 2
+
+   48 expr: NUMBERS .
+
+    $default  reduce using rule 48 (expr)
+
+
+State 3
+
+   32 statement: IF . expr $@8 '{' $@9 if_scope '}' $@10 else_statement
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 27
+
+
+State 4
+
+    9 scope: PRINT . expr '.'
+   12      | PRINT . STRING '.'
+
+    ID       shift, and go to state 24
+    STRING   shift, and go to state 28
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 29
+
+
+State 5
+
+   10 scope: SHOW . expr '.'
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 30
+
+
+State 6
+
+   52 expr: NOT . '(' expr ')'
+
+    '('  shift, and go to state 31
+
+
+State 7
+
+   11 scope: EXIT . '.'
+
+    '.'  shift, and go to state 32
+
+
+State 8
+
+   16 declaration: BOOL . ID $@3 decl
+   22            | BOOL . ID '=' expr $@6 decl
+   54 expr: BOOL . '(' expr ')'
+
+    ID   shift, and go to state 33
+    '('  shift, and go to state 34
+
+
+State 9
+
+   46 expr: TRUE .
+
+    $default  reduce using rule 46 (expr)
+
+
+State 10
+
+   47 expr: FALSE .
+
+    $default  reduce using rule 47 (expr)
+
+
+State 11
+
+   14 declaration: INT . ID $@2 decl
+   20            | INT . ID '=' expr $@5 decl
+   53 expr: INT . '(' expr ')'
+
+    ID   shift, and go to state 35
+    '('  shift, and go to state 36
+
+
+State 12
+
+   18 declaration: INTEGER . ID $@4 decl
+   24            | INTEGER . ID '=' expr $@7 decl
+
+    ID  shift, and go to state 37
+
+
+State 13
+
+   55 expr: '(' . expr ')'
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 38
+
+
+State 14
+
+    4 scope: '{' . $@1 start '}'
+
+    $default  reduce using rule 3 ($@1)
+
+    $@1  go to state 39
+
+
+State 15
+
+   64 expr: '-' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 40
+
+
+State 16
+
+   65 expr: '|' . expr '|'
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 41
+
+
+State 17
+
+    0 $accept: start . $end
+
+    $end  shift, and go to state 42
+
+
+State 18
+
+    1 start: scope . start
+
+    ID       shift, and go to state 1
+    NUMBERS  shift, and go to state 2
+    IF       shift, and go to state 3
+    PRINT    shift, and go to state 4
+    SHOW     shift, and go to state 5
+    NOT      shift, and go to state 6
+    EXIT     shift, and go to state 7
+    BOOL     shift, and go to state 8
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 11
+    INTEGER  shift, and go to state 12
+    '('      shift, and go to state 13
+    '{'      shift, and go to state 14
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    $default  reduce using rule 2 (start)
+
+    start        go to state 43
+    scope        go to state 18
+    declaration  go to state 19
+    assignment   go to state 20
+    statement    go to state 21
+    expr         go to state 22
+
+
+State 19
+
+    6 scope: declaration . '.'
+
+    '.'  shift, and go to state 44
+
+
+State 20
+
+    8 scope: assignment . '.'
+
+    '.'  shift, and go to state 45
+
+
+State 21
+
+    7 scope: statement .
+
+    $default  reduce using rule 7 (scope)
+
+
+State 22
+
+    5 scope: expr . '.'
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+    '.'  shift, and go to state 56
+
+
+State 23
+
+   28 assignment: ID '=' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 57
+
+
+State 24
+
+   49 expr: ID .
+
+    $default  reduce using rule 49 (expr)
+
+
+State 25
+
+   54 expr: BOOL . '(' expr ')'
+
+    '('  shift, and go to state 34
+
+
+State 26
+
+   53 expr: INT . '(' expr ')'
+
+    '('  shift, and go to state 36
+
+
+State 27
+
+   32 statement: IF expr . $@8 '{' $@9 if_scope '}' $@10 else_statement
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 29 ($@8)
+
+    $@8  go to state 58
+
+
+State 28
+
+   12 scope: PRINT STRING . '.'
+
+    '.'  shift, and go to state 59
+
+
+State 29
+
+    9 scope: PRINT expr . '.'
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+    '.'  shift, and go to state 60
+
+
+State 30
+
+   10 scope: SHOW expr . '.'
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+    '.'  shift, and go to state 61
+
+
+State 31
+
+   52 expr: NOT '(' . expr ')'
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 62
+
+
+State 32
+
+   11 scope: EXIT '.' .
+
+    $default  reduce using rule 11 (scope)
+
+
+State 33
+
+   16 declaration: BOOL ID . $@3 decl
+   22            | BOOL ID . '=' expr $@6 decl
+
+    '='  shift, and go to state 63
+
+    $default  reduce using rule 15 ($@3)
+
+    $@3  go to state 64
+
+
+State 34
+
+   54 expr: BOOL '(' . expr ')'
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 65
+
+
+State 35
+
+   14 declaration: INT ID . $@2 decl
+   20            | INT ID . '=' expr $@5 decl
+
+    '='  shift, and go to state 66
+
+    $default  reduce using rule 13 ($@2)
+
+    $@2  go to state 67
+
+
+State 36
+
+   53 expr: INT '(' . expr ')'
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 68
+
+
+State 37
+
+   18 declaration: INTEGER ID . $@4 decl
+   24            | INTEGER ID . '=' expr $@7 decl
+
+    '='  shift, and go to state 69
+
+    $default  reduce using rule 17 ($@4)
+
+    $@4  go to state 70
+
+
+State 38
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   55     | '(' expr . ')'
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    ')'  shift, and go to state 71
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+
+State 39
+
+    4 scope: '{' $@1 . start '}'
+
+    ID       shift, and go to state 1
+    NUMBERS  shift, and go to state 2
+    IF       shift, and go to state 3
+    PRINT    shift, and go to state 4
+    SHOW     shift, and go to state 5
+    NOT      shift, and go to state 6
+    EXIT     shift, and go to state 7
+    BOOL     shift, and go to state 8
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 11
+    INTEGER  shift, and go to state 12
+    '('      shift, and go to state 13
+    '{'      shift, and go to state 14
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    $default  reduce using rule 2 (start)
+
+    start        go to state 72
+    scope        go to state 18
+    declaration  go to state 19
+    assignment   go to state 20
+    statement    go to state 21
+    expr         go to state 22
+
+
+State 40
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+   64     | '-' expr .
+
+    $default  reduce using rule 64 (expr)
+
+
+State 41
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+   65     | '|' expr . '|'
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+    '|'  shift, and go to state 73
+
+
+State 42
+
+    0 $accept: start $end .
+
+    $default  accept
+
+
+State 43
+
+    1 start: scope start .
+
+    $default  reduce using rule 1 (start)
+
+
+State 44
+
+    6 scope: declaration '.' .
+
+    $default  reduce using rule 6 (scope)
+
+
+State 45
+
+    8 scope: assignment '.' .
+
+    $default  reduce using rule 8 (scope)
+
+
+State 46
+
+   51 expr: expr AND . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 74
+
+
+State 47
+
+   50 expr: expr OR . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 75
+
+
+State 48
+
+   58 expr: expr EQ . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 76
+
+
+State 49
+
+   59 expr: expr NEQ . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 77
+
+
+State 50
+
+   56 expr: expr '<' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 78
+
+
+State 51
+
+   57 expr: expr '>' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 79
+
+
+State 52
+
+   60 expr: expr '+' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 80
+
+
+State 53
+
+   61 expr: expr '-' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 81
+
+
+State 54
+
+   62 expr: expr '*' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 82
+
+
+State 55
+
+   63 expr: expr '/' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 83
+
+
+State 56
+
+    5 scope: expr '.' .
+
+    $default  reduce using rule 5 (scope)
+
+
+State 57
+
+   28 assignment: ID '=' expr .
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 28 (assignment)
+
+
+State 58
+
+   32 statement: IF expr $@8 . '{' $@9 if_scope '}' $@10 else_statement
+
+    '{'  shift, and go to state 84
+
+
+State 59
+
+   12 scope: PRINT STRING '.' .
+
+    $default  reduce using rule 12 (scope)
+
+
+State 60
+
+    9 scope: PRINT expr '.' .
+
+    $default  reduce using rule 9 (scope)
+
+
+State 61
+
+   10 scope: SHOW expr '.' .
+
+    $default  reduce using rule 10 (scope)
+
+
+State 62
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   52     | NOT '(' expr . ')'
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    ')'  shift, and go to state 85
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+
+State 63
+
+   22 declaration: BOOL ID '=' . expr $@6 decl
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 86
+
+
+State 64
+
+   16 declaration: BOOL ID $@3 . decl
+
+    $default  reduce using rule 27 (decl)
+
+    decl  go to state 87
+
+
+State 65
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   54     | BOOL '(' expr . ')'
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    ')'  shift, and go to state 88
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+
+State 66
+
+   20 declaration: INT ID '=' . expr $@5 decl
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 89
+
+
+State 67
+
+   14 declaration: INT ID $@2 . decl
+
+    $default  reduce using rule 27 (decl)
+
+    decl  go to state 90
+
+
+State 68
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   53     | INT '(' expr . ')'
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    ')'  shift, and go to state 91
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+
+State 69
+
+   24 declaration: INTEGER ID '=' . expr $@7 decl
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 92
+
+
+State 70
+
+   18 declaration: INTEGER ID $@4 . decl
+
+    $default  reduce using rule 27 (decl)
+
+    decl  go to state 93
+
+
+State 71
+
+   55 expr: '(' expr ')' .
+
+    $default  reduce using rule 55 (expr)
+
+
+State 72
+
+    4 scope: '{' $@1 start . '}'
+
+    '}'  shift, and go to state 94
+
+
+State 73
+
+   65 expr: '|' expr '|' .
+
+    $default  reduce using rule 65 (expr)
+
+
+State 74
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   51     | expr AND expr .
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 51 (expr)
+
+
+State 75
+
+   50 expr: expr . OR expr
+   50     | expr OR expr .
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 50 (expr)
+
+
+State 76
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   58     | expr EQ expr .
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 58 (expr)
+
+
+State 77
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   59     | expr NEQ expr .
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 59 (expr)
+
+
+State 78
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   56     | expr '<' expr .
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 56 (expr)
+
+
+State 79
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   57     | expr '>' expr .
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 57 (expr)
+
+
+State 80
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   60     | expr '+' expr .
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 60 (expr)
+
+
+State 81
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   61     | expr '-' expr .
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 61 (expr)
+
+
+State 82
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   62     | expr '*' expr .
+   63     | expr . '/' expr
+
+    $default  reduce using rule 62 (expr)
+
+
+State 83
+
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+   63     | expr '/' expr .
+
+    $default  reduce using rule 63 (expr)
+
+
+State 84
+
+   32 statement: IF expr $@8 '{' . $@9 if_scope '}' $@10 else_statement
+
+    $default  reduce using rule 30 ($@9)
+
+    $@9  go to state 95
+
+
+State 85
+
+   52 expr: NOT '(' expr ')' .
+
+    $default  reduce using rule 52 (expr)
+
+
+State 86
+
+   22 declaration: BOOL ID '=' expr . $@6 decl
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 21 ($@6)
+
+    $@6  go to state 96
+
+
+State 87
+
+   16 declaration: BOOL ID $@3 decl .
+   25 decl: decl . ',' ID
+   26     | decl . ',' ID '=' expr
+
+    ','  shift, and go to state 97
+
+    $default  reduce using rule 16 (declaration)
+
+
+State 88
+
+   54 expr: BOOL '(' expr ')' .
+
+    $default  reduce using rule 54 (expr)
+
+
+State 89
+
+   20 declaration: INT ID '=' expr . $@5 decl
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 19 ($@5)
+
+    $@5  go to state 98
+
+
+State 90
+
+   14 declaration: INT ID $@2 decl .
+   25 decl: decl . ',' ID
+   26     | decl . ',' ID '=' expr
+
+    ','  shift, and go to state 97
+
+    $default  reduce using rule 14 (declaration)
+
+
+State 91
+
+   53 expr: INT '(' expr ')' .
+
+    $default  reduce using rule 53 (expr)
+
+
+State 92
+
+   24 declaration: INTEGER ID '=' expr . $@7 decl
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 23 ($@7)
+
+    $@7  go to state 99
+
+
+State 93
+
+   18 declaration: INTEGER ID $@4 decl .
+   25 decl: decl . ',' ID
+   26     | decl . ',' ID '=' expr
+
+    ','  shift, and go to state 97
+
+    $default  reduce using rule 18 (declaration)
+
+
+State 94
+
+    4 scope: '{' $@1 start '}' .
+
+    $default  reduce using rule 4 (scope)
+
+
+State 95
+
+   32 statement: IF expr $@8 '{' $@9 . if_scope '}' $@10 else_statement
+
+    ID     shift, and go to state 100
+    PRINT  shift, and go to state 101
+    SHOW   shift, and go to state 102
+    EXIT   shift, and go to state 103
+
+    $default  reduce using rule 45 (if_scope)
+
+    assignment  go to state 104
+    if_scope    go to state 105
+
+
+State 96
+
+   22 declaration: BOOL ID '=' expr $@6 . decl
+
+    $default  reduce using rule 27 (decl)
+
+    decl  go to state 106
+
+
+State 97
+
+   25 decl: decl ',' . ID
+   26     | decl ',' . ID '=' expr
+
+    ID  shift, and go to state 107
+
+
+State 98
+
+   20 declaration: INT ID '=' expr $@5 . decl
+
+    $default  reduce using rule 27 (decl)
+
+    decl  go to state 108
+
+
+State 99
+
+   24 declaration: INTEGER ID '=' expr $@7 . decl
+
+    $default  reduce using rule 27 (decl)
+
+    decl  go to state 109
+
+
+State 100
+
+   28 assignment: ID . '=' expr
+
+    '='  shift, and go to state 23
+
+
+State 101
+
+   38 if_scope: PRINT . expr '.' $@12 if_scope
+   44         | PRINT . STRING '.' $@15 if_scope
+
+    ID       shift, and go to state 24
+    STRING   shift, and go to state 110
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 111
+
+
+State 102
+
+   40 if_scope: SHOW . expr '.' $@13 if_scope
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 112
+
+
+State 103
+
+   42 if_scope: EXIT . '.' $@14 if_scope
+
+    '.'  shift, and go to state 113
+
+
+State 104
+
+   36 if_scope: assignment . '.' if_scope
+
+    '.'  shift, and go to state 114
+
+
+State 105
+
+   32 statement: IF expr $@8 '{' $@9 if_scope . '}' $@10 else_statement
+
+    '}'  shift, and go to state 115
+
+
+State 106
+
+   22 declaration: BOOL ID '=' expr $@6 decl .
+   25 decl: decl . ',' ID
+   26     | decl . ',' ID '=' expr
+
+    ','  shift, and go to state 97
+
+    $default  reduce using rule 22 (declaration)
+
+
+State 107
+
+   25 decl: decl ',' ID .
+   26     | decl ',' ID . '=' expr
+
+    '='  shift, and go to state 116
+
+    $default  reduce using rule 25 (decl)
+
+
+State 108
+
+   20 declaration: INT ID '=' expr $@5 decl .
+   25 decl: decl . ',' ID
+   26     | decl . ',' ID '=' expr
+
+    ','  shift, and go to state 97
+
+    $default  reduce using rule 20 (declaration)
+
+
+State 109
+
+   24 declaration: INTEGER ID '=' expr $@7 decl .
+   25 decl: decl . ',' ID
+   26     | decl . ',' ID '=' expr
+
+    ','  shift, and go to state 97
+
+    $default  reduce using rule 24 (declaration)
+
+
+State 110
+
+   44 if_scope: PRINT STRING . '.' $@15 if_scope
+
+    '.'  shift, and go to state 117
+
+
+State 111
+
+   38 if_scope: PRINT expr . '.' $@12 if_scope
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+    '.'  shift, and go to state 118
+
+
+State 112
+
+   40 if_scope: SHOW expr . '.' $@13 if_scope
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+    '.'  shift, and go to state 119
+
+
+State 113
+
+   42 if_scope: EXIT '.' . $@14 if_scope
+
+    $default  reduce using rule 41 ($@14)
+
+    $@14  go to state 120
+
+
+State 114
+
+   36 if_scope: assignment '.' . if_scope
+
+    ID     shift, and go to state 100
+    PRINT  shift, and go to state 101
+    SHOW   shift, and go to state 102
+    EXIT   shift, and go to state 103
+
+    $default  reduce using rule 45 (if_scope)
+
+    assignment  go to state 104
+    if_scope    go to state 121
+
+
+State 115
+
+   32 statement: IF expr $@8 '{' $@9 if_scope '}' . $@10 else_statement
+
+    $default  reduce using rule 31 ($@10)
+
+    $@10  go to state 122
+
+
+State 116
+
+   26 decl: decl ',' ID '=' . expr
+
+    ID       shift, and go to state 24
+    NUMBERS  shift, and go to state 2
+    NOT      shift, and go to state 6
+    BOOL     shift, and go to state 25
+    TRUE     shift, and go to state 9
+    FALSE    shift, and go to state 10
+    INT      shift, and go to state 26
+    '('      shift, and go to state 13
+    '-'      shift, and go to state 15
+    '|'      shift, and go to state 16
+
+    expr  go to state 123
+
+
+State 117
+
+   44 if_scope: PRINT STRING '.' . $@15 if_scope
+
+    $default  reduce using rule 43 ($@15)
+
+    $@15  go to state 124
+
+
+State 118
+
+   38 if_scope: PRINT expr '.' . $@12 if_scope
+
+    $default  reduce using rule 37 ($@12)
+
+    $@12  go to state 125
+
+
+State 119
+
+   40 if_scope: SHOW expr '.' . $@13 if_scope
+
+    $default  reduce using rule 39 ($@13)
+
+    $@13  go to state 126
+
+
+State 120
+
+   42 if_scope: EXIT '.' $@14 . if_scope
+
+    ID     shift, and go to state 100
+    PRINT  shift, and go to state 101
+    SHOW   shift, and go to state 102
+    EXIT   shift, and go to state 103
+
+    $default  reduce using rule 45 (if_scope)
+
+    assignment  go to state 104
+    if_scope    go to state 127
+
+
+State 121
+
+   36 if_scope: assignment '.' if_scope .
+
+    $default  reduce using rule 36 (if_scope)
+
+
+State 122
+
+   32 statement: IF expr $@8 '{' $@9 if_scope '}' $@10 . else_statement
+
+    ELSE  shift, and go to state 128
+
+    $default  reduce using rule 33 (else_statement)
+
+    else_statement  go to state 129
+
+
+State 123
+
+   26 decl: decl ',' ID '=' expr .
+   50 expr: expr . OR expr
+   51     | expr . AND expr
+   56     | expr . '<' expr
+   57     | expr . '>' expr
+   58     | expr . EQ expr
+   59     | expr . NEQ expr
+   60     | expr . '+' expr
+   61     | expr . '-' expr
+   62     | expr . '*' expr
+   63     | expr . '/' expr
+
+    AND  shift, and go to state 46
+    OR   shift, and go to state 47
+    EQ   shift, and go to state 48
+    NEQ  shift, and go to state 49
+    '<'  shift, and go to state 50
+    '>'  shift, and go to state 51
+    '+'  shift, and go to state 52
+    '-'  shift, and go to state 53
+    '*'  shift, and go to state 54
+    '/'  shift, and go to state 55
+
+    $default  reduce using rule 26 (decl)
+
+
+State 124
+
+   44 if_scope: PRINT STRING '.' $@15 . if_scope
+
+    ID     shift, and go to state 100
+    PRINT  shift, and go to state 101
+    SHOW   shift, and go to state 102
+    EXIT   shift, and go to state 103
+
+    $default  reduce using rule 45 (if_scope)
+
+    assignment  go to state 104
+    if_scope    go to state 130
+
+
+State 125
+
+   38 if_scope: PRINT expr '.' $@12 . if_scope
+
+    ID     shift, and go to state 100
+    PRINT  shift, and go to state 101
+    SHOW   shift, and go to state 102
+    EXIT   shift, and go to state 103
+
+    $default  reduce using rule 45 (if_scope)
+
+    assignment  go to state 104
+    if_scope    go to state 131
+
+
+State 126
+
+   40 if_scope: SHOW expr '.' $@13 . if_scope
+
+    ID     shift, and go to state 100
+    PRINT  shift, and go to state 101
+    SHOW   shift, and go to state 102
+    EXIT   shift, and go to state 103
+
+    $default  reduce using rule 45 (if_scope)
+
+    assignment  go to state 104
+    if_scope    go to state 132
+
+
+State 127
+
+   42 if_scope: EXIT '.' $@14 if_scope .
+
+    $default  reduce using rule 42 (if_scope)
+
+
+State 128
+
+   35 else_statement: ELSE . '{' $@11 if_scope '}'
+
+    '{'  shift, and go to state 133
+
+
+State 129
+
+   32 statement: IF expr $@8 '{' $@9 if_scope '}' $@10 else_statement .
+
+    $default  reduce using rule 32 (statement)
+
+
+State 130
+
+   44 if_scope: PRINT STRING '.' $@15 if_scope .
+
+    $default  reduce using rule 44 (if_scope)
+
+
+State 131
+
+   38 if_scope: PRINT expr '.' $@12 if_scope .
+
+    $default  reduce using rule 38 (if_scope)
+
+
+State 132
+
+   40 if_scope: SHOW expr '.' $@13 if_scope .
+
+    $default  reduce using rule 40 (if_scope)
+
+
+State 133
+
+   35 else_statement: ELSE '{' . $@11 if_scope '}'
+
+    $default  reduce using rule 34 ($@11)
+
+    $@11  go to state 134
+
+
+State 134
+
+   35 else_statement: ELSE '{' $@11 . if_scope '}'
+
+    ID     shift, and go to state 100
+    PRINT  shift, and go to state 101
+    SHOW   shift, and go to state 102
+    EXIT   shift, and go to state 103
+
+    $default  reduce using rule 45 (if_scope)
+
+    assignment  go to state 104
+    if_scope    go to state 135
+
+
+State 135
+
+   35 else_statement: ELSE '{' $@11 if_scope . '}'
+
+    '}'  shift, and go to state 136
+
+
+State 136
+
+   35 else_statement: ELSE '{' $@11 if_scope '}' .
+
+    $default  reduce using rule 35 (else_statement)

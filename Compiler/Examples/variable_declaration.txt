@@ -1,0 +1,40 @@
+/*
+ * Variable declaration file for the Boo-Compiler.
+ * Shows how variables can be declared.
+ */
+
+// INT DECLARATIONS
+// Declares one single variable of type int, without assigning a value
+int aint.
+// Declares two variables of type int, without assigning them a value (can be applied to many more variables)
+int bint,cint.
+// Declares one single variable of type int, assigning it a value
+int dint=1.
+// Declares two variables of type int, assigning them a value (can be applied to many more variables)
+int eint=0,fint=1.
+// Declares multilple variables of type int, assigning to some and to other not, a value (the order does not matter)
+int gint=1,hint=0,iint,lint=1.
+
+// BOOL DECLARATIONS
+// Declares one single variable of type bool, without assigning a value
+bool abool.
+// Declares two variables of type bool, without assigning them a value (can be applied to many more variables)
+bool bbool, cbool.
+// Declares one single variable of type bool, assigning it a value
+bool dbool=true.
+// Declares two variables of type bool, assigning them a value (can be applied to many more variables)
+bool ebool=true, fbool=false.
+// Declares multilple variables of type bool, assigning to some and to other not, a value (the order does not matter)
+bool gbool=false,hbool=true,ibool,lbool=true.
+
+// INTEGER DECLARATIONS
+// Declares one single variable of type integer, without assigning a value
+integer ainteger.
+// Declares two variables of type integer, without assigning them a value (can be applied to many more variables)
+integer binteger,cinteger.
+// Declares one single variable of type integer, assigning it a value
+integer dinteger=30.
+// Declares two variables of type integer, assigning them a value (can be applied to many more variables)
+integer einteger=40,finteger=50.
+// Declares multilple variables of type integer, assigning to some and to other not, a value (the order does not matter)
+integer ginteger=47,hinteger=58,iinteger,linteger=45.

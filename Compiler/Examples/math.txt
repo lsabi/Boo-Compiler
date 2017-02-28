@@ -1,0 +1,71 @@
+/*
+ * Math file for the Boo-Compiler.
+ * Shows the math that the compiler is able to handle.
+ */
+
+int result.
+integer a=20,b=30,c=50,d=52,e=92.
+//Int result (0 or 1) 
+print a > e.
+print a == b.
+print c != d.
+print d < c.
+print |e| < b.
+
+// Bool result (false or true)
+print bool(a < e).
+print bool(a == b).
+print bool(c != d).
+print bool(d > c).
+print bool(b>|a|).
+
+// Fixed values
+print 10 > 11.
+print 54 < 93.
+print 283 != 832.
+print 81 == 82.
+print |-1|>0.
+
+// Operations
+print e/20 != c*4.
+print a+10 == b.
+print c*d > a*e.
+print a*e < b*d.
+print |a-e| > |c-d|.
+
+// More complicated operations
+print e+20*a-100 > c-34+22*a/e.
+print b/c+20*d < 10+e+1/a.
+print a*b/e+c*d/10 == b*e/a*d+c-d.
+print d*e/c-a*b != b/a*e/c*d.
+print |a*c-e| == |a-b+c|.
+
+// Even more complicated operations
+print (e+20)*10+a/b < a/(e-40)*(d-b+c).
+print e*e+50/(a+b) > a+((b*c)/d)*e/100.
+print a*(e/(d*(c/b))) != (e-a)/((d+c)*b).
+print (a/c)*(e+d-b) == c+(e*(b/(a+d))).
+print |(a/c)-((e+b)*2)| != a/|a-(e+d)*c|.
+
+// Saving the result
+result = a < b.
+print result.
+result = e *a == d*b.
+print result.
+result = e/a > b+c.
+print result.
+result = d*c != e.
+print result.
+result = |a-d| > 0.
+print result.
+
+// More complicated result saving
+result = e/a > c or a*b > d.
+print result.
+result = a < b and b < c.
+print result.
+result = not (b == d).
+print result.
+result = (e-a > a+b) == d-b == c+a. 
+print result.
+result = |d+a-e| != |a-c+d|.

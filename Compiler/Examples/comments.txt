@@ -1,0 +1,25 @@
+/*
+ * Comment declaration file for the Boo-Compiler.
+ * Shows how text can be commented.
+ * Suggestion: comment the lines that rise an error in order to go on with the execution the next time the program is run
+ */
+
+// SINGLE LINE COMMENT
+int as=1.
+// int bs=0.
+// Will print "1" (without quotes), the value of as
+print as.
+// Will rise an error since bs is commented and thus the variable as does not exist.
+// print bs.
+
+// MULTI-LINE COMMENT
+bool am=false.
+/*
+ bool bm=true.
+ bool cm,dm=true,em=false.
+*/
+// Will print "false" (without quotes), the value of am
+print am.
+// Will rise an error since bm, dm are within commented text and thus the variables do not exist.
+// print bm.
+// print dm. Comment at the end of the file is also recognized

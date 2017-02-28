@@ -1,0 +1,25 @@
+/*
+ * Exit file for the Boo-Compiler.
+ * Shows how to exit the program all of a sudden.
+ * Suggestion: comment the lines that rise an error in order to go on with the execution the next time the program is run
+ */
+
+// EXIT THE PROGRAM WITH THE EXIT COMMAND.
+// Exits the program.
+exit.
+
+// Declares a variable and the exits the program. Everything that follows will be ignored.
+// Declare variable a of type int.
+int a=1.
+// Exit command.
+exit.
+// Everything from now will be ignored. Comment the above line of code and re-execute in order to go on with the code execution.
+print a.
+
+// FURTHER EXAMPLES
+int ab=1.
+bool ac=false.
+print ab.
+// The above print is the last one, since the exit command of the following line. Thus everything above will not be executed.
+exit.
+print ac.

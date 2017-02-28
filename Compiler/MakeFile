@@ -1,0 +1,7 @@
+flex -l boo-lex.l
+yacc -vd boo-yacc.y
+    -v: generates the DFA
+    -d: generate the y.tab.h file
+gcc y.tab.c -ly -ll
+
+./a.out < input.txt

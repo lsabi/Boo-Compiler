@@ -1,0 +1,87 @@
+/*
+ * Conditionals file for the Boo-Compiler.
+ * Shows the conditions (if, if-else) that the compiler is able to handle.
+ */
+
+// If conditions
+if true
+{
+	print true.
+}
+
+if false
+{
+	print true.
+}
+
+if 40!=10
+{
+	print "40 is different from 10\n".
+}
+
+
+// If else conditions
+if true
+{
+	print true.
+}
+else
+{
+	print false.
+}
+
+if true
+{
+	print "The condition is true\n".
+}
+else
+{
+	print "The condition is false\n".
+}
+
+if 50>10
+{
+	print "50 > 10\n".
+}
+else
+{
+	print "50 <= 10\n".
+}
+
+// OTHER EXAMPLES
+if true
+{
+	print "The condition is true\n".
+}
+else
+{
+	print "The condition is false\n".
+}
+
+if not(false)
+{
+	print "The second condition is false\n".
+}
+
+if true
+{
+	print "True\n".
+}
+else
+{
+	print "Not true\n".
+}
+
+if bool(50>10) and true
+{
+	print "50>10 and true\n".
+}
+
+if 1
+{
+	print 1.
+}
+else
+{
+	print 0.
+}
